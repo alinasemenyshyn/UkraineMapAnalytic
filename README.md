@@ -1,25 +1,35 @@
-# 🇺🇦 Аналіз регіональних показників України
+# 🇺🇦 Analysis of Regional Indicators in Ukraine
 
-Цей проєкт є інтерактивним дашбордом, створеним у Power BI, для візуалізації та аналізу даних у розрізі областей України.
+This project is an interactive dashboard created in Power BI to visualize and analyze data by region in Ukraine.
 
-## 📊 Інтерфейс дашборду
+## 📊 Dashboard Interface
 <img width="962" height="540" alt="dashboard" src="https://github.com/user-attachments/assets/d948df1e-5fda-491c-8090-df9a757639c1" />
 
-## 🎯 Мета проєкту
-Створити зручний інструмент для швидкого порівняння показників між різними регіонами України з використанням інтерактивної картограми (Shape Map) та деталізованої таблиці.
+## 🎯 Project Goal
+To create a user-friendly tool for quickly comparing metrics across different regions of Ukraine using an interactive shape map and a detailed table.
 
-## 🛠 Технічний стек
-* **Інструмент:** Power BI Desktop
-* **Обробка даних:** Power Query (очищення та форматування даних)
-* **Розрахунки:** DAX (створення кастомних мір для динамічних підписів)
-* **Візуалізація:** Shape Map, Matrix/Table з налаштованим Cross-filtering.
+## 🛠 Tech Stack
+* **Tool:** Power BI Desktop
+* **Data Processing:** Power Query (data cleaning and formatting)
+* **Calculations:** DAX (creating custom measures for dynamic captions)
+* **Visualization:** Shape Map, Matrix/Table with custom cross-filtering.
 
-## 💡 Головні фічі дашборду
-1. **Інтерактивна фільтрація (Cross-filtering):** При натисканні на будь-яку область на карті, таблиця праворуч автоматично фільтрується, показуючи точні дані лише для обраного регіону.
-2. **Динамічні мітки (DAX):** Налаштовано кастомне відображення значень на карті, що дозволяє уникнути перевантаження інтерфейсу зайвим текстом (наприклад, реалізовано логіку приховування порожніх значень).
-3. **Колірне форматування (Conditional Formatting):** Інтенсивність кольору на карті та в таблиці автоматично підлаштовується під об'єм показника (від світлого до темно-червоного), що дозволяє миттєво знаходити лідерів та аутсайдерів.
+## 🤖 DAX SCRIPT
+* For card with visualization number of citizen in city I used:
+* `CityName lbl = 
+VAR CurrentRegion = "CityName"
+VAR CurrentValue = FORMAT(CALCULATE(SUM(region_tbl[Value]), region_tbl[Region] = CurrentRegion), "#,##0")
+VAR RegionExists = COUNTROWS(FILTER(region_tbl, region_tbl[Region] = CurrentRegion)) > 0
+RETURN
+    IF(RegionExists, IF(ISBLANK(CurrentValue) || CurrentValue = "0", CurrentRegion & ": 0", CurrentRegion & ": " & CurrentValue), CurrentRegion & ": No Data")
+  `
 
-## 📁 Структура файлів
-* `map.pbix` - оригінальний файл проєкту Power BI.
-* `data.csv` - вихідний набір даних.
-* `Ukraine-regions.json` - завантаження карти України.
+## 💡 Key Dashboard Features
+1. **Interactive Filtering (Cross-filtering):** When you click on any area on the map, the table on the right automatically filters, displaying data specific only to the selected region.
+2. **Dynamic labels (DAX):** Custom value display on the map is configured to avoid cluttering the interface with unnecessary text (for example, logic to hide empty values is implemented).
+3. **Color Formatting (Conditional Formatting):** The color intensity on the map and in the table automatically adjusts based on the indicator’s value (from light to dark red), allowing you to instantly identify leaders and laggards.
+
+## 📁 File Structure
+* `map.pbix` - the original Power BI project file.
+* `data.csv` - the source dataset.
+* `Ukraine-regions.json` - the Ukraine map download.
