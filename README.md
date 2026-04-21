@@ -3,7 +3,7 @@
 This project is an interactive dashboard created in Power BI to visualize and analyze data by region in Ukraine.
 
 ## 📊 Dashboard Interface
-<img width="962" height="540" alt="dashboard" src="https://github.com/user-attachments/assets/d948df1e-5fda-491c-8090-df9a757639c1" />
+<img width="962" height="540" alt="dashboard" src="https://github.com/user-attachments/assets/d948df1e-5fda-491c-8090-df9a757639c1](https://github.com/alinasemenyshyn/UkraineMapAnalytic/blob/main/zoom_map.MP4)" />
 
 ## 🎯 Project Goal
 To create a user-friendly tool for quickly comparing metrics across different regions of Ukraine using an interactive shape map and a detailed table.
